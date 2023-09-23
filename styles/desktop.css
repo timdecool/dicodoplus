@@ -1,5 +1,10 @@
 @media (min-width: 961px) {
-    .menu__title {
+    .game_window {
+        max-width: 50%;
+    }
+
+
+    .menu__title, .section__title {
         font-size: 55px;
     }
     
