@@ -15,6 +15,7 @@
 
 }
 
+/* GENERAL LAYOUT */
 html,body {
     width: 100%;
     height: 100%;
@@ -27,15 +28,6 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
 }
-
-.hidden {
-    display: none;
-}
-
-.bold {
-    font-size: 25px;
-}
-
 
 .container {
     width: 100%;
@@ -52,8 +44,9 @@ body {
     padding: 0 40px;
     border-bottom: 6px solid var(--primary);
     box-sizing: border-box;
-    transition: 1s ease-in;
+    transition: 320ms ease;
 }
+
 
 .game_window>div {
     position: relative;
@@ -62,6 +55,35 @@ body {
     flex-direction: column;
     gap: 10px;
     margin-bottom: -25px;
+}
+
+.section>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+
+/* CLASSES UTILITAIRES */
+.hidden {
+    display: none;
+}
+
+.masked {
+    visibility: none;
+}
+
+.shrunk {
+    transform: scale(0);
+}
+
+.bold {
+    font-size: 25px;
+}
+
+.callout {
+    color: var(--accent);
 }
 
 /* HEADER  */
@@ -109,13 +131,4 @@ body {
     text-decoration: none;
 }
 
-.callout {
-    color: var(--accent);
-}
-
-.rules>div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-}
+/*  */

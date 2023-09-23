@@ -1,9 +1,12 @@
+// Sections
 const buttons = document.getElementsByClassName("btn");
-
-const game_window = document.querySelector('.game_window');
 const menu = document.querySelector('.menu');
 const rules = document.querySelector('.rules');
-const header = document.querySelector('.header');
+const options = document.querySelector('.options');
+const newGame = document.querySelector('.newGame');
+let activeSection;
+
+const gamewindow = document.querySelector('.game_window');
 
 const activeButton = (e) => {
     for(let i=0; i<buttons.length;i++) {
@@ -14,21 +17,34 @@ const activeButton = (e) => {
                 e.target.classList.toggle('active');
         }
     }
-
-    if(e.target.id == 'rulesButton' || e.target.classList.contains('back-menu')) {
-        displayRules();
-    }
 }
 
 for(let i=0; i<buttons.length; i++) {
     buttons[i].addEventListener('click', (e) => {
-        activeButton(e);
+        displaySection(e);
         
     });
 }
 
-const displayRules = () => {
-    menu.classList.toggle('hidden');
-    rules.classList.toggle('hidden');
+// Fonction d'affichage des sections
+const displaySection = (e) => {
+    gamewindow.classList.toggle('shrunk');
+    setTimeout(() => {
+        if (e.target.outerText == "Nouvelle partie" || e.target.outerText == "Règles" || e.target.outerText == "Options") {
+            activeSection = e.target.outerText;
+        }
+        switch (activeSection) {
+            case "Nouvelle partie":
+                newGame.classList.toggle('hidden');
+                break;
+            case "Règles":
+                rules.classList.toggle('hidden');
+                break;
+            case "Options":
+                options.classList.toggle('hidden');
+                break;
+        }
+        menu.classList.toggle('hidden');
+        gamewindow.classList.toggle('shrunk')
+    }, 320);
 }
-

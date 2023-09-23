@@ -6,8 +6,12 @@
     }
 
 
-    .menu__title, .section__title {
+    .menu__title {
         font-size: 45px;
+    }
+
+    .section__title {
+        font-size: 25px;
     }
 
     .hide-sm {
