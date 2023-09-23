@@ -1,10 +1,8 @@
 @media (max-width:960px) {
-
     .game_window {
         width: 90%;
         box-sizing: border-box;
     }
-
 
     .menu__title {
         font-size: 45px;
@@ -14,7 +12,7 @@
         font-size: 25px;
     }
 
-    .hide-sm {
-        display: none;
+    .bold {
+        font-size: 20px;
     }
 }

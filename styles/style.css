@@ -10,7 +10,7 @@
     --text-color: #0d0c08;
     --bg-color: #e5a500;
     --primary: rgb(40, 40, 40);
-    --accent: #406611;
+    --accent: #35550e;
     --font: 'Rubik';
 
 }
@@ -40,13 +40,12 @@ body {
 
 .game_window {
     background-color: var(--bg-color);
-    border-radius: 24px;
+    border-radius: 18px;
     padding: 0 40px;
     border-bottom: 6px solid var(--primary);
     box-sizing: border-box;
-    transition: 320ms ease;
+    transition: transform 300ms ease;
 }
-
 
 .game_window>div {
     position: relative;
@@ -76,10 +75,6 @@ body {
 
 .shrunk {
     transform: scale(0);
-}
-
-.bold {
-    font-size: 25px;
 }
 
 .callout {
@@ -114,6 +109,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    width: 100%;
 }
 
 .menu__links img {
@@ -131,4 +127,17 @@ body {
     text-decoration: none;
 }
 
-/*  */
+/* OPTIONS */
+.options>div>ul>li>div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.options ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

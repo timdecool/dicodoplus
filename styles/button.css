@@ -8,9 +8,13 @@
     transition: 0.15s ease-in-out;
     z-index: 0;
     border-style: solid;
-    border-width: 2px 2px 4px 2px;
+    border-width: 2px 2px 5px 2px;
     border-color: var(--primary);
     text-align: center;
+}
+
+.btn.option {
+    padding: 8px 20px;
 }
 
 .btn::after {

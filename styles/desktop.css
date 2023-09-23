@@ -3,13 +3,17 @@
         max-width: 50%;
     }
 
-
     .menu__title {
         font-size: 55px;
     }
 
     .section__title {
         font-size: 35px;
+        align-self: flex-start;
+    }
+
+    .bold {
+        font-size: 25px;
     }
     
 }

@@ -8,11 +8,11 @@
 </head>
 <body>
     <div class="container">
-            <div class="game_window">
+            <div class="game_window shrunk">
                 <div>
                     <!-- HEADER -->
                     <div class="header">
-                        <img src="data/7500_4_10.jpg" alt="Logo Dicodoplus" class="">
+                        <img src="data/diplo-sm.jpg" alt="Logo Dicodoplus" class="">
                     </div>
                     
                     <!-- SECTION MENU -->
@@ -20,20 +20,20 @@
                         <div>
                             <h1 class="menu__title">Dicodoplus<span class="callout">.</span></h1>
                             <div class="menu__buttons">
-                                <div class="btn btn-slide btn-accent bold" id="newGame">
+                                <div class="btn btn-slide btn-accent bold link" id="newGame">
                                     Nouvelle partie
                                 </div>
-                                <div class="btn btn-slide btn-primary" id="rules">
+                                <div class="btn btn-slide btn-primary link" id="rules">
                                     Règles
                                 </div>
-                                <div class="btn btn-slide btn-primary" id="options">
+                                <div class="btn btn-slide btn-primary link" id="options">
                                     Options
                                 </div>
                             </div>
                             <div class="menu__links">
                                 <ul>
                                     <li>
-                                        <a href="https://github.com/timdecool/dicodoplus">
+                                        <a href="https://github.com/timdecool/dicodoplus" target="_blank">
                                             <img src="data/github-mark.svg" alt="Vers mon github">
                                             <p>timdecool</p>
                                         </a>
@@ -47,7 +47,7 @@
                     <div class="section newGame hidden">
                         <div>
                             <h2 class="section__title">Le jeu des définitions<span class="callout">.</span></h2>
-                            <div class="btn btn-slide btn-primary back-menu">Retour au menu</div>
+                            <div class="btn btn-slide btn-primary back-menu link">Retour au menu</div>
                         </div>
                     </div>
 
@@ -60,7 +60,7 @@
                             <p>
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat sunt similique ducimus mollitia saepe libero rerum quia, quasi velit veniam voluptates eaque, veritatis ab nisi rem doloribus. Distinctio quod perspiciatis rem eius maiores cumque tenetur quos suscipit dignissimos perferendis aliquam inventore, sit facere, aliquid omnis illo hic nesciunt cupiditate nostrum doloribus possimus! Voluptatem mollitia iste maxime, reprehenderit cupiditate consequuntur quasi vel explicabo nulla id dicta eaque qui dolor eveniet! Repellendus cupiditate est dolor nam laudantium perferendis deserunt odio saepe numquam cumque, et dolores unde odit rem velit libero recusandae?
                             </p>
-                            <div class="btn btn-slide btn-primary back-menu">Retour au menu</div>
+                            <div class="btn btn-slide btn-primary back-menu link">Retour au menu</div>
                         </div>
                         
                     </div>
@@ -69,12 +69,32 @@
                     <div class="section options hidden">
                         <div>
                             <h2 class="section__title">Options<span class="callout">.</span></h2>
-                            <div class="btn btn-slide btn-primary back-menu">Retour au menu</div>
                             <ul>
                                 <li>
-                                    
+                                    <p class="bold">Indices autorisés (minimum 1)</p>
+                                    <div>
+                                        <div class="btn btn-accent btn-slide option indices active">Définitions</div>
+                                        <div class="btn btn-accent btn-slide option indices active">Images</div>
+                                        <div class="btn btn-accent btn-slide option indices active">Proverbes et citations</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p class="bold">Chronomètre</p>
+                                    <div>
+                                        <div class="btn btn-accent btn-slide option chrono active">Avec</div>
+                                        <div class="btn btn-accent btn-slide option chrono">Sans</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p class="bold">Niveau de difficulté</p>
+                                    <div>
+                                        <div class="btn btn-accent btn-slide option difficulte">Facile</div>
+                                        <div class="btn btn-accent btn-slide option difficulte active">Normal</div>
+                                        <div class="btn btn-accent btn-slide option difficulte">Difficile</div>
+                                    </div>
                                 </li>
                             </ul>
+                            <div class="btn btn-slide btn-primary back-menu link">Retour au menu</div>
                         </div>
                     </div>
                 </div>
