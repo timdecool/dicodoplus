@@ -1,0 +1,9 @@
+@media (max-width:960px) {
+    .menu__title {
+        font-size: 45px;
+    }
+
+    .hide-sm {
+        display: none;
+    }
+}

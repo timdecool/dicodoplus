@@ -1,0 +1,64 @@
+.btn {
+    padding: 12px 30px;
+    border: none;
+    font-family: var(--font);
+    font-size: 18px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.15s ease-in-out;
+    z-index: 0;
+    border-style: solid;
+    border-width: 2px 2px 4px 2px;
+    border-color: var(--primary);
+    text-align: center;
+}
+
+.btn::after {
+    content:" ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    transition: 0.15s ease-in-out;
+    z-index: -1;
+}
+
+.btn-slide::after {
+    height: 0%;
+}
+
+.btn-fade::after {
+    width: 100%;
+    opacity: 0;
+}
+
+.btn:hover, .btn.active {
+    color: var(--bg-color);
+}
+
+.btn-slide:hover::after, .btn-fade:hover::after, .btn.active::after {
+    height: 100%;
+    opacity: 1;
+}
+
+
+.btn-accent {
+    background-color: var(--bg-color);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.btn-accent::after {
+    background-color: var(--accent);
+}
+
+.btn-primary {
+    background-color: var(--bg-color);
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary::after {
+    background-color: var(--primary);
+}
+
