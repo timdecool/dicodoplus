@@ -1,0 +1,11 @@
+- Section jeu :
+    Chronomètre
+    Score
+    Zone de saisie
+    Zone d'affichage des indices
+
+- Règles :
+    Écrire les règles du jeu
+
+- Options :
+    Rassembler les variables dans un objet

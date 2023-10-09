@@ -12,9 +12,26 @@ const menu = document.querySelector('.menu');
 const rules = document.querySelector('.rules');
 const options = document.querySelector('.options');
 const newGame = document.querySelector('.newGame');
+const chevrons = document.querySelectorAll('.chevron');
+chevrons.forEach((chevron) => {
+    chevron.addEventListener('click', browseGames);
+})
+const gamesTitles = document.querySelectorAll('.titre-jeu');
+let currentGame = 1;
 let activeSection;
-
 const gamewindow = document.querySelector('.game_window');
+
+function browseGames (e) {
+    gamesTitles[currentGame].classList.add("hidden");
+    if(e.target.classList.contains("chevron-left")) {
+        currentGame--;
+        if(currentGame < 0) currentGame = gamesTitles.length-1;
+    } else {
+        currentGame++;
+        if(currentGame == gamesTitles.length) currentGame = 0;
+    }
+    gamesTitles[currentGame].classList.remove("hidden");
+}
 
 // OPENING
 setTimeout(() => {
@@ -66,7 +83,6 @@ for(let i=0; i<optionButtons.length; i++) {
             e.target.classList.toggle('active');
             difficulte = e.target.outerText;
         }
-        console.log(indices,chrono,difficulte);
     })
 }
 
