@@ -1,26 +1,30 @@
-// Options
-const optionButtons = document.getElementsByClassName("option");
-const chronoButtons = document.getElementsByClassName("chrono");
-const difficulteButtons = document.getElementsByClassName("difficulte");
-let indices = ["Définitions","Images","Proverbes et citations"];
-let chrono = true;
-let difficulte = "Normal";
-
 // Sections
+let activeSection;
+const gamewindow = document.querySelector('.game_window');
+
+///////////////////////////
+/////// Navigation ////////
+///////////////////////////
+
+// Opening
+setTimeout(() => {
+    gamewindow.classList.toggle('shrunk');
+})
+
+// Sélecteurs DOM
 const linkButtons = document.getElementsByClassName("link");
 const menu = document.querySelector('.menu');
-const rules = document.querySelector('.rules');
-const options = document.querySelector('.options');
+const rulesSection = document.querySelector('.rules');
+const optionsSection = document.querySelector('.options');
 const newGame = document.querySelector('.newGame');
 const chevrons = document.querySelectorAll('.chevron');
 chevrons.forEach((chevron) => {
     chevron.addEventListener('click', browseGames);
 })
 const gamesTitles = document.querySelectorAll('.titre-jeu');
-let currentGame = 1;
-let activeSection;
-const gamewindow = document.querySelector('.game_window');
 
+// Sélection du jeu
+let currentGame = 1;
 function browseGames (e) {
     gamesTitles[currentGame].classList.add("hidden");
     if(e.target.classList.contains("chevron-left")) {
@@ -33,60 +37,13 @@ function browseGames (e) {
     gamesTitles[currentGame].classList.remove("hidden");
 }
 
-// OPENING
-setTimeout(() => {
-    gamewindow.classList.toggle('shrunk');
-}, 210);
-
-const activeButton = (e) => {
-    for(let i=0; i<linkButtons.length;i++) {
-        if(linkButtons[i].classList.contains('active')) {
-            linkButtons[i].classList.toggle('active');
-        }
-        else if(linkButtons[i] == e.target && !linkButtons[i].classList.contains('active')) {
-                e.target.classList.toggle('active');
-        }
-    }
-}
-
+// Fonction d'affichage des sections
 for(let i=0; i<linkButtons.length; i++) {
     linkButtons[i].addEventListener('click', (e) => {
         displaySection(e);
-        
     });
 }
 
-for(let i=0; i<optionButtons.length; i++) {
-    optionButtons[i].addEventListener('click', (e) => {
-        if(e.target.classList.contains('chrono')) {
-            for(let i=0; i<chronoButtons.length; i++) {
-                chronoButtons[i].classList.toggle('active');
-            }
-            chrono = !chrono;
-        } 
-        else if(e.target.classList.contains('indices')) {
-            if (indices.length > 1 || !e.target.classList.contains('active')) {
-                e.target.classList.toggle('active');
-                if(indices.indexOf(e.target.outerText) > -1) {
-                    indices.splice(indices.indexOf(e.target.outerText),1);
-                } else {
-                    indices.push(e.target.outerText);
-                }
-            }
-        }
-        else if(e.target.classList.contains('difficulte')) {
-            for(let i=0; i<difficulteButtons.length;i++) {
-                if(difficulteButtons[i].classList.contains('active')) {
-                    difficulteButtons[i].classList.toggle('active');
-                }
-            }
-            e.target.classList.toggle('active');
-            difficulte = e.target.outerText;
-        }
-    })
-}
-
-// Fonction d'affichage des sections
 const displaySection = (e) => {
     gamewindow.classList.toggle('shrunk');
     setTimeout(() => {
@@ -98,13 +55,91 @@ const displaySection = (e) => {
                 newGame.classList.toggle('hidden');
                 break;
             case "Règles":
-                rules.classList.toggle('hidden');
+                rulesSection.classList.toggle('hidden');
                 break;
             case "Options":
-                options.classList.toggle('hidden');
+                optionsSection.classList.toggle('hidden');
                 break;
         }
         menu.classList.toggle('hidden');
         gamewindow.classList.toggle('shrunk')
     }, 300);
 }
+
+/////////////////////////
+////// OBJETS JEUX //////
+/////////////////////////
+
+///// OPTIONS
+
+// Sélecteurs DOM
+const chronoButtons = document.querySelectorAll(".chrono");
+const clueButtons = document.querySelectorAll('.indices');
+const difficultyButtons = document.querySelectorAll(".difficulte");
+
+// Objet
+const options = {
+    clues: ["Définitions","Images","Proverbes et citations"],
+    chrono: true,
+    difficulty: "Normal",
+    updateChrono: function() {
+        for(let i=0; i<chronoButtons.length; i++) {
+            chronoButtons[i].classList.toggle('active');
+        }
+        this.chrono = !this.chrono;
+    },
+    updateClues: function(e) {
+        if (this.clues.length > 1 || !e.target.classList.contains('active')) {
+            e.target.classList.toggle('active');
+            if(this.clues.indexOf(e.target.textContent) > -1) {
+                this.clues.splice(this.clues.indexOf(e.target.textContent),1);
+            } else {
+                this.clues.push(e.target.textContent);
+            }
+        }
+    },
+    updateDifficulty: function(e) {
+        for(let i=0; i<difficultyButtons.length;i++) {
+            if(difficultyButtons[i].classList.contains('active')) {
+                difficultyButtons[i].classList.toggle('active');
+            }
+        }
+        e.target.classList.toggle('active');
+        this.difficulty = e.target.textContent;
+    },
+};
+
+/// Event listeners
+for(let i=0; i<clueButtons.length; i++) { clueButtons[i].addEventListener('click', (e) => { options.updateClues(e); }) };
+for(let i=0; i<difficultyButtons.length; i++) { difficultyButtons[i].addEventListener('click', (e) => { options.updateDifficulty(e); }) };
+for(let i=0; i<chronoButtons.length; i++) { chronoButtons[i].addEventListener('click', () => { options.updateChrono(); }) };
+
+///////// TIMER
+const timer = {
+    time: 0,
+    interval: 0,
+    startTimer: function(timeset=30) {
+        if (this.interval == 0) {
+            this.time = timeset;
+            this.displayTimer();
+            timerPlaceholderContainer.classList.add('started');
+            this.interval = setInterval(() => {
+                this.time--;
+                this.displayTimer();
+                if (this.time <= 0) this.stopTimer();
+            },1000);
+        }
+    },
+    stopTimer: function() {
+        clearInterval(this.interval);
+        this.interval = 0;
+        timerPlaceholderContainer.classList.remove('started');
+    },
+    addTime: function(timegain=3) {
+        this.time = this.time + timegain;
+        this.displayTimer();
+    },
+    displayTimer: function() {
+        timerPlaceholder.textContent = this.time < 10 ? `0${this.time}`:`${this.time}`;
+    },
+};
