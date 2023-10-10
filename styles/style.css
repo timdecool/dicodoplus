@@ -12,7 +12,6 @@
     --primary: rgb(40, 40, 40);
     --accent: #35550e;
     --font: 'Rubik';
-
 }
 
 /* GENERAL LAYOUT */
@@ -44,8 +43,11 @@ body {
     padding: 0 40px;
     border-bottom: 6px solid var(--primary);
     box-sizing: border-box;
-    transition: transform 300ms ease;
+    transition: 300ms ease;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    position: relative;
+    top: 0;
+    user-select: none;
 }
 
 .game_window>div {
@@ -64,7 +66,6 @@ body {
     gap: 30px;
 }
 
-
 /* CLASSES UTILITAIRES */
 .hidden {
     display: none;
@@ -76,6 +77,7 @@ body {
 
 .shrunk {
     transform: scale(0);
+    top: -150px;
 }
 
 .callout {
@@ -103,7 +105,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px;
+    gap: 60px;
 }
 
 .menu__buttons {
@@ -113,20 +115,17 @@ body {
     width: 100%;
 }
 
-.multiple {
+.multiple-choice-selector {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    overflow: hidden;
     font-size: 25px;
-    user-select: none;
+    margin-bottom: 10px;
 }
 
 .titre-jeu {
     position: relative;
-    transition: opacity 200ms ease-in-out;
-    font-size: 25px;
     padding: 4px;
 }
 
@@ -164,3 +163,45 @@ body {
     flex-direction: column;
     gap: 30px;
 }
+
+/* .timertestContainer {
+    font-size: 35px;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+} */
+/* 
+.started {
+    z-index: 0;
+    position: relative;
+}
+.started::after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    width: 10px;
+    height: 50px;
+    background-color: #35550e;
+    filter: blur(7px);
+    transform-origin: bottom center;
+    animation-name: rotate;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+} */
