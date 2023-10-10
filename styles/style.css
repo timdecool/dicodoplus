@@ -205,3 +205,22 @@ body {
         transform: rotate(360deg);
     }
 } */
+
+/* CHALUMOT */
+.chalumot__window {
+    min-width: 300px;
+    height: 150px;
+    background-color: rgba(255, 255, 255, 0.637);
+    overflow: hidden;
+    border: 2px solid var(--text-color);
+    border-bottom: 5px solid var(--text-color);
+}
+
+.chalumot__container {
+    font-size: 30px;
+}
+
+.chalumot__stats {
+    height: 150px;
+    border: 2px solid var(--text-color);
+}

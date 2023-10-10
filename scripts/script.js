@@ -52,6 +52,10 @@ const displaySection = (e) => {
         }
         switch (activeSection) {
             case "Nouvelle partie":
+                // chalumot.generateGame();
+                // document.addEventListener('keydown', (e) => {
+                //     chalumot.matchLetters(e);
+                // });
                 newGame.classList.toggle('hidden');
                 break;
             case "Règles":
@@ -69,6 +73,8 @@ const displaySection = (e) => {
 /////////////////////////
 ////// OBJETS JEUX //////
 /////////////////////////
+
+let dico = [];
 
 ///// OPTIONS
 
@@ -122,7 +128,6 @@ const timer = {
         if (this.interval == 0) {
             this.time = timeset;
             this.displayTimer();
-            timerPlaceholderContainer.classList.add('started');
             this.interval = setInterval(() => {
                 this.time--;
                 this.displayTimer();
@@ -133,13 +138,100 @@ const timer = {
     stopTimer: function() {
         clearInterval(this.interval);
         this.interval = 0;
-        timerPlaceholderContainer.classList.remove('started');
     },
     addTime: function(timegain=3) {
         this.time = this.time + timegain;
         this.displayTimer();
     },
     displayTimer: function() {
-        timerPlaceholder.textContent = this.time < 10 ? `0${this.time}`:`${this.time}`;
+        console.log(this.time);
     },
 };
+
+///////// TYPING GAME AKA CHALUMOT
+const chalumot = {
+    dico: [],
+    words: [],
+    currentWord: 0,
+    currentLetter: 0,
+    keyPressed: 0,
+    accuratePresses: 0,
+    userWord: "",
+    timePassed: 0,
+    timer: timer,
+    generateGame: function() {
+        this.filterDictionary();
+
+        // Génération fenêtre stats
+        const statsBlock = document.createElement("div");
+        gameDiv.appendChild(statsBlock);
+        const accuracyPar = document.createElement("p");
+        accuracyPar.textContent = `0% de précision (0 sur 0)`;
+        statsBlock.appendChild(accuracyPar);
+        const cps = document.createElement("p");
+        statsBlock.appendChild(cps);
+        const wordsCompleted = document.createElement("p");
+        statsBlock.appendChild(wordsCompleted);
+        const timePar = document.createElement("p");
+        statsBlock.appendChild(timePar);
+    
+        // Génération Event listener
+        this.nextWord();
+    },
+    matchLetters: function(e) {
+        console.log(e.key);
+        if (e.key == " ") {
+            e.preventDefault();
+        }
+        if (e.key != "Dead" && e.key != "Shift" && e.key != "Backspace" && e.key != " ") {
+            this.userWord += e.key; // On concatène la lettre tapée
+            this.keyPressed++;
+            if(this.words[this.currentWord].startsWith(this.userWord)) {
+                this.accuratePresses++;
+                this.currentLetter++;
+                if(this.currentLetter == this.words[this.currentWord].length) {
+                    this.nextWord();
+                }
+            }
+            else {
+                this.userWord = this.userWord.substring(0, this.userWord.length-1);
+            }
+
+            
+        }
+    },
+    addWord: function() {
+        this.words.push(randomWord(this.dico));
+        newGame.children[0].children[1].textContent = this.words.at(-1);
+    },
+    nextWord: function() {
+        if(this.words.length != 0) {
+            this.timer.addTime();
+            this.currentWord++;
+        }
+        this.addWord();
+        this.currentLetter = 0;
+        this.userWord = "";
+    },
+    filterDictionary: function() {
+        this.dico = dico.filter((word) => word.length>7);
+    },
+};
+
+// Fonctions dictionnaire
+(async function importDictionary() {
+    try {
+        const reponse = await fetch('data/mots.txt');
+        const contenu = await reponse.text();
+
+        const lines = contenu.split('\n');
+        const lines2 = lines.map(line => line.replace ('\r', ''));
+        dico = [...new Set(lines2)];
+    } catch(error) {
+        console.error('Une erreur s\'est produite lors de l\'importation du fichier :', error);
+    }
+}) ();
+
+function randomWord(dico) {
+    return dico[Math.floor(Math.random()*dico.length)];
+}
