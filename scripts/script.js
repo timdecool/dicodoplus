@@ -36,7 +36,7 @@ function browseGames (e) {
 // OPENING
 setTimeout(() => {
     gamewindow.classList.toggle('shrunk');
-})
+}, 210);
 
 const activeButton = (e) => {
     for(let i=0; i<linkButtons.length;i++) {
